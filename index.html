@@ -1,0 +1,1020 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Atlantico One — Private Oceanfront Estate · Tenerife</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+        *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+        :root {
+            --champagne: #b8975a;
+            --champagne-light: #d4b483;
+            --obsidian: #0e0e18;
+            --charcoal: #1c1c2e;
+            --ivory: #f5f2ed;
+            --warm-white: #faf9f7;
+            --text: #2a2a2a;
+            --muted: #7a7a7a;
+        }
+
+        html { scroll-behavior: smooth; }
+
+        body {
+            font-family: 'Montserrat', sans-serif;
+            color: var(--text);
+            background: var(--warm-white);
+            font-weight: 300;
+        }
+
+        /* ── NAVIGATION ── */
+        nav {
+            position: fixed; top: 0; width: 100%; z-index: 200;
+            padding: 1.8rem 3rem;
+            display: flex; justify-content: space-between; align-items: center;
+            transition: all 0.5s ease;
+        }
+        nav.scrolled {
+            background: rgba(14,14,24,0.97);
+            backdrop-filter: blur(20px);
+            padding: 1.2rem 3rem;
+            border-bottom: 1px solid rgba(184,151,90,0.15);
+        }
+        .logo {
+            display: flex; flex-direction: column;
+            color: #fff;
+        }
+        .logo-main {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.5rem;
+            font-weight: 300;
+            letter-spacing: 6px;
+            text-transform: uppercase;
+            color: #fff;
+        }
+        .logo-sub {
+            font-size: 0.6rem;
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            color: var(--champagne);
+            margin-top: 1px;
+        }
+        nav ul { list-style: none; display: flex; gap: 2.5rem; align-items: center; }
+        nav ul a {
+            color: rgba(255,255,255,0.75); text-decoration: none;
+            font-size: 0.68rem; letter-spacing: 2.5px; text-transform: uppercase;
+            font-weight: 500; transition: color 0.3s;
+        }
+        nav ul a:hover { color: var(--champagne); }
+        .nav-cta {
+            border: 1px solid var(--champagne) !important;
+            color: var(--champagne) !important;
+            padding: 0.55rem 1.5rem;
+            transition: all 0.3s !important;
+        }
+        .nav-cta:hover { background: var(--champagne) !important; color: var(--obsidian) !important; }
+
+        /* ── HERO ── */
+        .hero {
+            height: 100vh; min-height: 700px;
+            position: relative; overflow: hidden;
+        }
+        .hero-img {
+            width: 100%; height: 100%;
+            object-fit: cover; object-position: center;
+            transform: scale(1.05);
+            transition: transform 8s ease;
+        }
+        .hero-img.loaded { transform: scale(1); }
+        .hero-overlay {
+            position: absolute; inset: 0;
+            background: linear-gradient(
+                160deg,
+                rgba(14,14,24,0.55) 0%,
+                rgba(14,14,24,0.3) 50%,
+                rgba(14,14,24,0.7) 100%
+            );
+        }
+        .hero-content {
+            position: absolute; inset: 0;
+            display: flex; flex-direction: column;
+            align-items: center; justify-content: center;
+            text-align: center; color: #fff; padding: 2rem;
+        }
+        .hero-eyebrow {
+            font-size: 0.65rem; letter-spacing: 5px; text-transform: uppercase;
+            color: var(--champagne); margin-bottom: 1.8rem;
+            display: flex; align-items: center; gap: 1rem;
+        }
+        .hero-eyebrow::before, .hero-eyebrow::after {
+            content: ''; display: block;
+            width: 40px; height: 1px; background: var(--champagne);
+        }
+        .hero h1 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: clamp(3rem, 7vw, 6rem);
+            font-weight: 300; line-height: 1.1;
+            letter-spacing: 3px; margin-bottom: 1.2rem;
+        }
+        .hero h1 em { font-style: italic; color: var(--champagne-light); }
+        .hero-tagline {
+            font-size: 0.78rem; letter-spacing: 3px; text-transform: uppercase;
+            opacity: 0.7; margin-bottom: 3rem; font-weight: 400;
+        }
+        .hero-actions { display: flex; gap: 1.2rem; }
+        .btn-gold {
+            background: var(--champagne); color: var(--obsidian);
+            padding: 1rem 2.8rem; text-decoration: none;
+            font-size: 0.68rem; letter-spacing: 3px; text-transform: uppercase;
+            font-weight: 600; transition: all 0.3s; display: inline-block;
+        }
+        .btn-gold:hover { background: var(--champagne-light); }
+        .btn-ghost {
+            border: 1px solid rgba(255,255,255,0.5); color: rgba(255,255,255,0.9);
+            padding: 1rem 2.8rem; text-decoration: none;
+            font-size: 0.68rem; letter-spacing: 3px; text-transform: uppercase;
+            font-weight: 500; transition: all 0.3s; display: inline-block;
+        }
+        .btn-ghost:hover { border-color: #fff; color: #fff; background: rgba(255,255,255,0.05); }
+
+        .hero-footer {
+            position: absolute; bottom: 0; left: 0; right: 0;
+            display: flex; justify-content: center;
+            background: rgba(14,14,24,0.8);
+            backdrop-filter: blur(10px);
+            border-top: 1px solid rgba(184,151,90,0.2);
+        }
+        .hero-stats { display: flex; }
+        .hero-stat {
+            padding: 1.5rem 3.5rem; color: #fff; text-align: center;
+            border-right: 1px solid rgba(184,151,90,0.15);
+        }
+        .hero-stat:last-child { border-right: none; }
+        .hero-stat-num {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 2rem; font-weight: 300; color: var(--champagne);
+            display: block; line-height: 1;
+        }
+        .hero-stat-label {
+            font-size: 0.6rem; letter-spacing: 2.5px; text-transform: uppercase;
+            opacity: 0.6; margin-top: 0.3rem; display: block;
+        }
+
+        /* ── INTRO STRIP ── */
+        .intro-strip {
+            background: var(--charcoal);
+            padding: 2.5rem;
+            text-align: center;
+            border-bottom: 1px solid rgba(184,151,90,0.2);
+        }
+        .intro-strip p {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.2rem; font-style: italic;
+            color: rgba(255,255,255,0.6); letter-spacing: 1px;
+        }
+        .intro-strip span { color: var(--champagne); }
+
+        /* ── SECTION BASICS ── */
+        .section { padding: 7rem 2rem; }
+        .section-label {
+            font-size: 0.62rem; letter-spacing: 5px; text-transform: uppercase;
+            color: var(--champagne); display: flex; align-items: center; gap: 1rem;
+            justify-content: center; margin-bottom: 1rem;
+        }
+        .section-label::before, .section-label::after {
+            content: ''; display: block; width: 30px; height: 1px; background: var(--champagne);
+        }
+        .section-h2 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: clamp(2rem, 4vw, 3.2rem);
+            font-weight: 300; color: var(--charcoal);
+            text-align: center; margin-bottom: 3.5rem; letter-spacing: 1px;
+        }
+        .section-h2.light { color: #fff; }
+
+        /* ── ABOUT ── */
+        .about { background: var(--ivory); }
+        .about-grid {
+            max-width: 1200px; margin: 0 auto;
+            display: grid; grid-template-columns: 1fr 1fr; gap: 6rem; align-items: center;
+        }
+        .about-visual { position: relative; }
+        .about-visual img {
+            width: 100%; height: 560px; object-fit: cover; display: block;
+        }
+        .about-accent {
+            position: absolute; bottom: -2rem; right: -2rem;
+            width: 180px; height: 180px;
+            border: 1px solid var(--champagne);
+            z-index: -1;
+        }
+        .about-badge {
+            position: absolute; top: 2rem; left: -2rem;
+            background: var(--charcoal); color: #fff;
+            padding: 1.5rem; text-align: center; min-width: 130px;
+        }
+        .about-badge-num {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 2.5rem; font-weight: 300; color: var(--champagne);
+            display: block; line-height: 1;
+        }
+        .about-badge-text {
+            font-size: 0.58rem; letter-spacing: 2px; text-transform: uppercase;
+            opacity: 0.7; margin-top: 0.3rem;
+        }
+        .about-text .section-label { justify-content: flex-start; }
+        .about-text .section-label::before { display: none; }
+        .about-h2 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 2.8rem; font-weight: 300;
+            color: var(--charcoal); line-height: 1.2;
+            margin-bottom: 2rem; letter-spacing: 1px;
+        }
+        .about-h2 em { font-style: italic; color: var(--champagne); }
+        .about-p {
+            color: var(--muted); line-height: 2; font-size: 0.88rem;
+            margin-bottom: 1.5rem; font-weight: 300;
+        }
+        .about-divider {
+            width: 40px; height: 1px; background: var(--champagne);
+            margin: 2rem 0;
+        }
+        .about-specs {
+            display: flex; gap: 2rem; flex-wrap: wrap;
+        }
+        .about-spec { }
+        .about-spec-val {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.8rem; font-weight: 300; color: var(--charcoal);
+            display: block; line-height: 1;
+        }
+        .about-spec-key {
+            font-size: 0.62rem; letter-spacing: 2px; text-transform: uppercase;
+            color: var(--muted); margin-top: 0.2rem;
+        }
+
+        /* ── AMENITIES ── */
+        .amenities { background: var(--charcoal); }
+        .amenities-grid {
+            max-width: 1100px; margin: 0 auto;
+            display: grid; grid-template-columns: repeat(4, 1fr); gap: 1px;
+            border: 1px solid rgba(184,151,90,0.15);
+            background: rgba(184,151,90,0.1);
+        }
+        .amenity {
+            background: var(--charcoal);
+            padding: 2.5rem 1.8rem; text-align: center;
+            transition: background 0.3s;
+        }
+        .amenity:hover { background: rgba(184,151,90,0.07); }
+        .amenity-icon { font-size: 1.8rem; margin-bottom: 1rem; }
+        .amenity h3 {
+            font-size: 0.72rem; letter-spacing: 2px; text-transform: uppercase;
+            color: rgba(255,255,255,0.85); margin-bottom: 0.5rem; font-weight: 500;
+        }
+        .amenity p { font-size: 0.75rem; color: rgba(255,255,255,0.4); line-height: 1.6; }
+
+        /* ── GALLERY ── */
+        .gallery-section { background: var(--obsidian); padding-bottom: 0; }
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(12, 1fr);
+            grid-template-rows: 340px 340px;
+            gap: 4px; margin-top: 3rem;
+        }
+        .g1 { grid-column: 1 / 6; grid-row: 1 / 3; }
+        .g2 { grid-column: 6 / 9; grid-row: 1 / 2; }
+        .g3 { grid-column: 9 / 13; grid-row: 1 / 2; }
+        .g4 { grid-column: 6 / 8; grid-row: 2 / 3; }
+        .g5 { grid-column: 8 / 10; grid-row: 2 / 3; }
+        .g6 { grid-column: 10 / 13; grid-row: 2 / 3; }
+        .gallery-item {
+            overflow: hidden; cursor: pointer; position: relative;
+        }
+        .gallery-item img {
+            width: 100%; height: 100%; object-fit: cover;
+            transition: transform 0.7s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            display: block;
+        }
+        .gallery-item:hover img { transform: scale(1.08); }
+        .gallery-item::after {
+            content: ''; position: absolute; inset: 0;
+            background: rgba(14,14,24,0); transition: background 0.4s;
+        }
+        .gallery-item:hover::after { background: rgba(14,14,24,0.15); }
+        .gallery-more {
+            text-align: center; padding: 3rem 2rem;
+            font-size: 0.65rem; letter-spacing: 4px; text-transform: uppercase;
+            color: var(--champagne); font-weight: 500;
+        }
+
+        /* ── ROOMS ── */
+        .rooms-section { background: var(--warm-white); }
+        .rooms-scroll {
+            max-width: 1300px; margin: 0 auto;
+            display: grid; grid-template-columns: repeat(3, 1fr); gap: 2px;
+        }
+        .room-card { position: relative; overflow: hidden; background: #fff; }
+        .room-img { width: 100%; height: 280px; object-fit: cover; display: block; transition: transform 0.7s ease; }
+        .room-card:hover .room-img { transform: scale(1.05); }
+        .room-body { padding: 1.8rem 2rem; }
+        .room-num {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 0.75rem; color: var(--champagne); letter-spacing: 3px;
+            text-transform: uppercase; margin-bottom: 0.4rem;
+        }
+        .room-body h3 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.4rem; font-weight: 400; color: var(--charcoal);
+            margin-bottom: 0.6rem;
+        }
+        .room-body p { font-size: 0.78rem; color: var(--muted); line-height: 1.7; }
+
+        /* ── EXPERIENCE ── */
+        .experience { background: var(--ivory); }
+        .exp-grid {
+            max-width: 1200px; margin: 0 auto;
+            display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; align-items: center;
+        }
+        .exp-img { height: 500px; object-fit: cover; width: 100%; display: block; }
+        .exp-text .section-label { justify-content: flex-start; }
+        .exp-text .section-label::before { display: none; }
+        .exp-h2 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 2.6rem; font-weight: 300; color: var(--charcoal);
+            margin-bottom: 2rem; line-height: 1.2;
+        }
+        .exp-list { list-style: none; }
+        .exp-list li {
+            display: flex; gap: 1rem; align-items: flex-start;
+            padding: 1rem 0; border-bottom: 1px solid rgba(0,0,0,0.06);
+            font-size: 0.82rem; color: var(--muted); line-height: 1.6;
+        }
+        .exp-list li::before {
+            content: '—'; color: var(--champagne); font-size: 0.9rem;
+            flex-shrink: 0; margin-top: 0.1rem;
+        }
+
+        /* ── LOCATION ── */
+        .location-section { background: var(--charcoal); }
+        .location-grid {
+            max-width: 1200px; margin: 0 auto;
+            display: grid; grid-template-columns: 1fr 1.2fr; gap: 5rem; align-items: center;
+        }
+        .location-text .section-label { justify-content: flex-start; }
+        .location-text .section-label::before { display: none; }
+        .location-h2 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 2.6rem; font-weight: 300; color: #fff;
+            margin-bottom: 1.5rem;
+        }
+        .location-p { font-size: 0.82rem; color: rgba(255,255,255,0.5); line-height: 2; margin-bottom: 2rem; }
+        .dist-list { list-style: none; }
+        .dist-list li {
+            display: flex; justify-content: space-between; align-items: center;
+            padding: 0.9rem 0; border-bottom: 1px solid rgba(184,151,90,0.12);
+            font-size: 0.78rem; color: rgba(255,255,255,0.6);
+        }
+        .dist-list li strong { color: var(--champagne); font-weight: 500; }
+        .map-wrap { height: 460px; overflow: hidden; }
+        .map-wrap iframe { width: 100%; height: 100%; border: none; filter: grayscale(30%) contrast(1.1); }
+
+        /* ── REVIEWS ── */
+        .reviews-section { background: var(--obsidian); }
+        .reviews-inner {
+            max-width: 900px; margin: 0 auto; text-align: center;
+        }
+        .score-display {
+            display: flex; align-items: center; justify-content: center;
+            gap: 2rem; margin-bottom: 3rem;
+        }
+        .score-num {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 8rem; font-weight: 300; color: var(--champagne);
+            line-height: 1;
+        }
+        .score-right { text-align: left; }
+        .score-label {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.8rem; font-weight: 300; color: #fff; display: block;
+        }
+        .score-source { font-size: 0.65rem; letter-spacing: 2px; text-transform: uppercase; color: rgba(255,255,255,0.4); margin-top: 0.3rem; display: block; }
+        .score-stars { color: var(--champagne); font-size: 1.1rem; margin-top: 0.5rem; display: block; }
+        .score-cats {
+            display: grid; grid-template-columns: repeat(3, 1fr);
+            gap: 1px; background: rgba(184,151,90,0.1);
+            border: 1px solid rgba(184,151,90,0.12); margin-top: 2rem;
+        }
+        .score-cat {
+            background: rgba(14,14,24,0.8); padding: 1.5rem;
+            display: flex; flex-direction: column; align-items: center; gap: 0.4rem;
+        }
+        .score-cat-name { font-size: 0.65rem; letter-spacing: 2px; text-transform: uppercase; color: rgba(255,255,255,0.45); }
+        .score-cat-val {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 2rem; font-weight: 300; color: var(--champagne); line-height: 1;
+        }
+
+        /* ── POLICIES ── */
+        .policies { background: var(--ivory); }
+        .policies-grid {
+            max-width: 1000px; margin: 0 auto;
+            display: grid; grid-template-columns: repeat(3, 1fr); gap: 2px;
+            background: rgba(0,0,0,0.05);
+        }
+        .policy {
+            background: var(--ivory); padding: 2.5rem 2rem; text-align: center;
+        }
+        .policy-icon { font-size: 1.6rem; margin-bottom: 1rem; }
+        .policy h4 {
+            font-size: 0.68rem; letter-spacing: 2.5px; text-transform: uppercase;
+            color: var(--charcoal); margin-bottom: 0.7rem; font-weight: 600;
+        }
+        .policy p { font-size: 0.8rem; color: var(--muted); line-height: 1.7; }
+
+        /* ── CTA ── */
+        .cta-section {
+            position: relative; overflow: hidden;
+            padding: 10rem 2rem; text-align: center; color: #fff;
+        }
+        .cta-bg {
+            position: absolute; inset: 0;
+            background: url('img/812832182.jpg') center/cover;
+        }
+        .cta-overlay {
+            position: absolute; inset: 0;
+            background: linear-gradient(to bottom, rgba(14,14,24,0.8), rgba(14,14,24,0.9));
+        }
+        .cta-content { position: relative; z-index: 1; }
+        .cta-eyebrow {
+            font-size: 0.65rem; letter-spacing: 5px; text-transform: uppercase;
+            color: var(--champagne); display: flex; align-items: center; gap: 1rem;
+            justify-content: center; margin-bottom: 1.5rem;
+        }
+        .cta-eyebrow::before, .cta-eyebrow::after {
+            content: ''; display: block; width: 40px; height: 1px; background: var(--champagne);
+        }
+        .cta-h2 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: clamp(2.5rem, 5vw, 4.5rem);
+            font-weight: 300; margin-bottom: 1.2rem; line-height: 1.15;
+        }
+        .cta-p {
+            font-size: 0.82rem; opacity: 0.6; margin-bottom: 3rem;
+            letter-spacing: 1px; font-weight: 300; max-width: 500px; margin-left: auto; margin-right: auto;
+        }
+        .cta-p + .btn-gold { margin-bottom: 0; }
+
+        /* ── FOOTER ── */
+        footer {
+            background: var(--obsidian);
+            padding: 3rem 2rem;
+            text-align: center;
+            border-top: 1px solid rgba(184,151,90,0.15);
+        }
+        .footer-logo {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.3rem; letter-spacing: 6px;
+            text-transform: uppercase; color: var(--champagne);
+            margin-bottom: 0.5rem;
+        }
+        .footer-sub { font-size: 0.6rem; letter-spacing: 3px; color: rgba(255,255,255,0.25); text-transform: uppercase; margin-bottom: 2rem; }
+        .footer-info { font-size: 0.72rem; color: rgba(255,255,255,0.3); line-height: 1.9; }
+        .footer-divider { width: 40px; height: 1px; background: rgba(184,151,90,0.3); margin: 1.5rem auto; }
+
+        /* ── LIGHTBOX ── */
+        .lightbox {
+            display: none; position: fixed; inset: 0;
+            background: rgba(0,0,0,0.97); z-index: 1000;
+            align-items: center; justify-content: center;
+        }
+        .lightbox.active { display: flex; }
+        .lb-img { max-width: 88vw; max-height: 88vh; object-fit: contain; }
+        .lb-close {
+            position: absolute; top: 2rem; right: 2.5rem; color: rgba(255,255,255,0.6);
+            font-size: 1.5rem; cursor: pointer; background: none; border: none;
+            letter-spacing: 2px; font-family: 'Montserrat', sans-serif; font-size: 0.65rem;
+            text-transform: uppercase; transition: color 0.3s;
+        }
+        .lb-close:hover { color: var(--champagne); }
+        .lb-prev, .lb-next {
+            position: absolute; top: 50%; transform: translateY(-50%);
+            background: none; border: none; color: rgba(255,255,255,0.5);
+            font-size: 2rem; padding: 1.5rem; cursor: pointer; transition: color 0.3s;
+        }
+        .lb-prev:hover, .lb-next:hover { color: var(--champagne); }
+        .lb-prev { left: 1rem; }
+        .lb-next { right: 1rem; }
+        .lb-counter {
+            position: absolute; bottom: 2rem; left: 50%; transform: translateX(-50%);
+            font-size: 0.6rem; letter-spacing: 3px; color: rgba(255,255,255,0.3);
+        }
+
+        /* ── RESPONSIVE ── */
+        @media (max-width: 1024px) {
+            .about-grid, .exp-grid, .location-grid { grid-template-columns: 1fr; gap: 3rem; }
+            .about-accent, .about-badge { display: none; }
+            .gallery-grid { grid-template-columns: repeat(2, 1fr); grid-template-rows: auto; }
+            .g1,.g2,.g3,.g4,.g5,.g6 { grid-column: auto; grid-row: auto; }
+            .gallery-grid > div { height: 280px; }
+            .rooms-scroll { grid-template-columns: 1fr 1fr; }
+            .amenities-grid { grid-template-columns: repeat(2, 1fr); }
+            .score-cats { grid-template-columns: repeat(2, 1fr); }
+        }
+        @media (max-width: 768px) {
+            nav { padding: 1.2rem 1.5rem; }
+            nav ul { display: none; }
+            .hero-stat { padding: 1.2rem 1.5rem; }
+            .hero-stat-num { font-size: 1.5rem; }
+            .rooms-scroll, .policies-grid { grid-template-columns: 1fr; }
+            .score-display { flex-direction: column; }
+            .score-cats { grid-template-columns: 1fr 1fr; }
+            .section { padding: 4rem 1.5rem; }
+        }
+        @media (max-width: 520px) {
+            .hero-stats { overflow-x: auto; }
+            .amenities-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+
+<!-- NAVIGATION -->
+<nav id="nav">
+    <div class="logo">
+        <span class="logo-main">Atlantico One</span>
+        <span class="logo-sub">Private Estate · Tenerife</span>
+    </div>
+    <ul>
+        <li><a href="#about">The Villa</a></li>
+        <li><a href="#gallery">Gallery</a></li>
+        <li><a href="#suites">Suites</a></li>
+        <li><a href="#location">Location</a></li>
+        <li><a href="#reserve" class="nav-cta">Reserve</a></li>
+    </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+    <img class="hero-img" id="heroImg"
+        src="img/811085429.jpg"
+        alt="Atlantico One — private oceanfront estate with heated pool">
+    <div class="hero-overlay"></div>
+    <div class="hero-content">
+        <div class="hero-eyebrow">Las Aguas · Tenerife · Spain</div>
+        <h1>Atlantico One<br><em>Oceanfront Estate</em></h1>
+        <p class="hero-tagline">A Private Luxury Villa Exclusively Yours</p>
+        <div class="hero-actions">
+            <a href="#reserve" class="btn-gold">Enquire &amp; Reserve</a>
+            <a href="#gallery" class="btn-ghost">Explore the Villa</a>
+        </div>
+    </div>
+    <div class="hero-footer">
+        <div class="hero-stats">
+            <div class="hero-stat">
+                <span class="hero-stat-num">5</span>
+                <span class="hero-stat-label">Bedrooms</span>
+            </div>
+            <div class="hero-stat">
+                <span class="hero-stat-num">5</span>
+                <span class="hero-stat-label">Bathrooms</span>
+            </div>
+            <div class="hero-stat">
+                <span class="hero-stat-num">300</span>
+                <span class="hero-stat-label">m² Estate</span>
+            </div>
+            <div class="hero-stat">
+                <span class="hero-stat-num">10/10</span>
+                <span class="hero-stat-label">Guest Score</span>
+            </div>
+            <div class="hero-stat">
+                <span class="hero-stat-num">500m</span>
+                <span class="hero-stat-label">to the Beach</span>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- INTRO STRIP -->
+<div class="intro-strip">
+    <p>An exceptional <span>private oceanfront retreat</span> on the Atlantic coast of Tenerife — where understated luxury meets untouched nature.</p>
+</div>
+
+<!-- ABOUT -->
+<section class="section about" id="about">
+    <div class="about-grid">
+        <div class="about-visual">
+            <img src="img/812833212.jpg" alt="Luxury bathroom with freestanding bath and ocean view">
+            <div class="about-accent"></div>
+            <div class="about-badge">
+                <span class="about-badge-num">4★</span>
+                <span class="about-badge-text">Luxury Estate</span>
+            </div>
+        </div>
+        <div class="about-text">
+            <div class="section-label">The Villa</div>
+            <h2 class="about-h2">Exclusive &amp; <em>Entirely Yours</em></h2>
+            <p class="about-p">
+                Atlantico One is a rare, privately held luxury estate commanding breathtaking uninterrupted views over the Atlantic Ocean. Set in the serene coastal village of Las Aguas, this 300 m² residence is reserved exclusively for one group of guests at a time — no shared spaces, no compromises.
+            </p>
+            <p class="about-p">
+                Five elegantly appointed master suites, five bespoke bathrooms featuring freestanding baths and rainfall showers, a private heated pool, sun terrace, and fully equipped gourmet kitchen define a standard of living reserved for the most discerning travellers.
+            </p>
+            <div class="about-divider"></div>
+            <div class="about-specs">
+                <div class="about-spec">
+                    <span class="about-spec-val">300</span>
+                    <span class="about-spec-key">m² Total</span>
+                </div>
+                <div class="about-spec">
+                    <span class="about-spec-val">5</span>
+                    <span class="about-spec-key">Bedrooms</span>
+                </div>
+                <div class="about-spec">
+                    <span class="about-spec-val">5</span>
+                    <span class="about-spec-key">Bathrooms</span>
+                </div>
+                <div class="about-spec">
+                    <span class="about-spec-val">10</span>
+                    <span class="about-spec-key">Max Guests</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- AMENITIES -->
+<section class="section amenities" id="amenities">
+    <div class="section-label" style="color:var(--champagne);">Amenities</div>
+    <h2 class="section-h2 light">Curated for Excellence</h2>
+    <div class="amenities-grid">
+        <div class="amenity">
+            <div class="amenity-icon">🏊</div>
+            <h3>Heated Private Pool</h3>
+            <p>Outdoor pool, exclusively yours, year-round</p>
+        </div>
+        <div class="amenity">
+            <div class="amenity-icon">🌊</div>
+            <h3>Oceanfront Views</h3>
+            <p>Panoramic Atlantic vistas from pool, terrace &amp; suites</p>
+        </div>
+        <div class="amenity">
+            <div class="amenity-icon">🔑</div>
+            <h3>Entire Villa — Private</h3>
+            <p>No shared areas. The estate is entirely yours</p>
+        </div>
+        <div class="amenity">
+            <div class="amenity-icon">🍽️</div>
+            <h3>Gourmet Kitchen</h3>
+            <p>Fully equipped with premium appliances</p>
+        </div>
+        <div class="amenity">
+            <div class="amenity-icon">🔥</div>
+            <h3>Outdoor Barbecue</h3>
+            <p>Al fresco dining on the sun terrace</p>
+        </div>
+        <div class="amenity">
+            <div class="amenity-icon">❄️</div>
+            <h3>Climate Control</h3>
+            <p>Individual air conditioning in every room</p>
+        </div>
+        <div class="amenity">
+            <div class="amenity-icon">🚗</div>
+            <h3>Private Parking</h3>
+            <p>Complimentary on-site parking</p>
+        </div>
+        <div class="amenity">
+            <div class="amenity-icon">📶</div>
+            <h3>High-Speed Wi-Fi</h3>
+            <p>Complimentary throughout the estate</p>
+        </div>
+    </div>
+</section>
+
+<!-- GALLERY -->
+<section class="gallery-section section" id="gallery">
+    <div class="section-label">Gallery</div>
+    <h2 class="section-h2 light">The Estate in Detail</h2>
+    <div class="gallery-grid">
+        <div class="gallery-item g1"><img src="img/811085429.jpg" alt="Villa exterior with pool" onclick="openLightbox(0)"></div>
+        <div class="gallery-item g2"><img src="img/811085483.jpg" alt="Master bedroom suite" onclick="openLightbox(1)"></div>
+        <div class="gallery-item g3"><img src="img/812833212.jpg" alt="Luxury bathroom" onclick="openLightbox(2)"></div>
+        <div class="gallery-item g4"><img src="img/812833106.jpg" alt="Living area" onclick="openLightbox(3)"></div>
+        <div class="gallery-item g5"><img src="img/811085461.jpg" alt="Terrace view" onclick="openLightbox(4)"></div>
+        <div class="gallery-item g6"><img src="img/812832182.jpg" alt="Atlantic ocean view" onclick="openLightbox(5)"></div>
+    </div>
+    <div class="gallery-more">
+        <a href="#" onclick="openLightbox(6); return false;" style="color:var(--champagne); text-decoration:none; letter-spacing:4px; font-size:0.65rem;">
+            View Full Gallery — 52 Images
+        </a>
+    </div>
+</section>
+
+<!-- SUITES -->
+<section class="section rooms-section" id="suites">
+    <div class="section-label">Accommodation</div>
+    <h2 class="section-h2">Five Signature Suites</h2>
+    <div class="rooms-scroll">
+        <div class="room-card">
+            <img class="room-img" src="img/811085483.jpg" alt="Master Suite One">
+            <div class="room-body">
+                <div class="room-num">Suite I</div>
+                <h3>Ocean Master Suite</h3>
+                <p>King-size bed · Direct ocean view · En-suite bath with rainfall shower</p>
+            </div>
+        </div>
+        <div class="room-card">
+            <img class="room-img" src="img/812832962.jpg" alt="Master Suite Two">
+            <div class="room-body">
+                <div class="room-num">Suite II</div>
+                <h3>Ocean Master Suite</h3>
+                <p>King-size bed · Atlantic panorama · Private en-suite bathroom</p>
+            </div>
+        </div>
+        <div class="room-card">
+            <img class="room-img" src="img/812833154.jpg" alt="Master Suite Three">
+            <div class="room-body">
+                <div class="room-num">Suite III</div>
+                <h3>Garden Master Suite</h3>
+                <p>King-size bed · Garden terrace view · En-suite with freestanding bath</p>
+            </div>
+        </div>
+        <div class="room-card">
+            <img class="room-img" src="img/812833257.jpg" alt="Suite Four">
+            <div class="room-body">
+                <div class="room-num">Suite IV</div>
+                <h3>Deluxe Double Suite</h3>
+                <p>Double bed · Garden view · Air conditioning · Shared luxury bathroom</p>
+            </div>
+        </div>
+        <div class="room-card">
+            <img class="room-img" src="img/812832810.jpg" alt="Suite Five">
+            <div class="room-body">
+                <div class="room-num">Suite V</div>
+                <h3>Deluxe Double Suite</h3>
+                <p>Double bed · Garden view · Air conditioning · Shared luxury bathroom</p>
+            </div>
+        </div>
+        <div class="room-card">
+            <img class="room-img" src="img/812833212.jpg" alt="Luxury Bathrooms">
+            <div class="room-body">
+                <div class="room-num">Five Bathrooms</div>
+                <h3>Bespoke Bathrooms</h3>
+                <p>Freestanding baths · Rainfall showers · Floor-to-ceiling ocean views</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- EXPERIENCE -->
+<section class="section experience">
+    <div class="exp-grid">
+        <img class="exp-img" src="img/816796352.jpg" alt="Las Aguas coastline Tenerife">
+        <div class="exp-text">
+            <div class="section-label">The Experience</div>
+            <h2 class="exp-h2">Beyond the Villa</h2>
+            <ul class="exp-list">
+                <li>Playa de Las Aguas — a pristine beach just 500 metres from the estate's door</li>
+                <li>World-class hiking trails through dramatic volcanic landscapes</li>
+                <li>Coastal cycling routes along the northern Atlantic shore</li>
+                <li>Deep-sea fishing and water sports from nearby Los Gigantes</li>
+                <li>Puerto de la Cruz with fine dining and cultural attractions, 15 km away</li>
+                <li>Tenerife Norte Airport — 35 km, approximately 30 minutes by car</li>
+            </ul>
+        </div>
+    </div>
+</section>
+
+<!-- LOCATION -->
+<section class="section location-section" id="location">
+    <div class="location-grid">
+        <div class="location-text">
+            <div class="section-label" style="color:var(--champagne)">Location</div>
+            <h2 class="location-h2">Las Aguas,<br>Tenerife</h2>
+            <p class="location-p">
+                C. el Puntón 4, 38429 Las Aguas, Tenerife, Spain. A privileged address on the unspoilt northern Atlantic coast — serene, secluded, yet connected.
+            </p>
+            <ul class="dist-list">
+                <li><span>🏖️ Playa de Las Aguas</span><strong>500 m</strong></li>
+                <li><span>⛵ Los Gigantes Marina</span><strong>42 km</strong></li>
+                <li><span>🌳 Parque Taoro</span><strong>15 km</strong></li>
+                <li><span>🏙️ Puerto de la Cruz</span><strong>15 km</strong></li>
+                <li><span>✈️ Tenerife Norte Airport</span><strong>35 km</strong></li>
+                <li><span>🚗 Private Parking</span><strong>On-site</strong></li>
+            </ul>
+        </div>
+        <div class="map-wrap">
+            <iframe
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3476.2!2d-16.8095!3d28.3611!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2sCalle+el+Punt%C3%B3n+4%2C+Las+Aguas!5e0!3m2!1sen!2ses!4v1"
+                allowfullscreen loading="lazy" referrerpolicy="no-referrer-when-downgrade">
+            </iframe>
+        </div>
+    </div>
+</section>
+
+<!-- REVIEWS -->
+<section class="section reviews-section" id="reviews">
+    <div class="section-label" style="color:var(--champagne)">Guest Reviews</div>
+    <h2 class="section-h2 light">Exceptional, Without Exception</h2>
+    <div class="reviews-inner">
+        <div class="score-display">
+            <div class="score-num">10</div>
+            <div class="score-right">
+                <span class="score-label">Exceptional</span>
+                <span class="score-source">Booking.com · 2 verified reviews</span>
+                <span class="score-stars">★★★★★</span>
+            </div>
+        </div>
+        <div class="score-cats">
+            <div class="score-cat">
+                <span class="score-cat-name">Staff</span>
+                <span class="score-cat-val">10.0</span>
+            </div>
+            <div class="score-cat">
+                <span class="score-cat-name">Facilities</span>
+                <span class="score-cat-val">10.0</span>
+            </div>
+            <div class="score-cat">
+                <span class="score-cat-name">Cleanliness</span>
+                <span class="score-cat-val">10.0</span>
+            </div>
+            <div class="score-cat">
+                <span class="score-cat-name">Comfort</span>
+                <span class="score-cat-val">10.0</span>
+            </div>
+            <div class="score-cat">
+                <span class="score-cat-name">Location</span>
+                <span class="score-cat-val">8.8</span>
+            </div>
+            <div class="score-cat">
+                <span class="score-cat-name">Value</span>
+                <span class="score-cat-val">7.5</span>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- POLICIES -->
+<section class="section policies">
+    <div class="section-label">House Policies</div>
+    <h2 class="section-h2">Essential Information</h2>
+    <div class="policies-grid">
+        <div class="policy">
+            <div class="policy-icon">🕔</div>
+            <h4>Check-in</h4>
+            <p>From 17:00 · Please notify the host of your estimated arrival time in advance</p>
+        </div>
+        <div class="policy">
+            <div class="policy-icon">🕙</div>
+            <h4>Check-out</h4>
+            <p>By 11:00 · Early departure from 06:00</p>
+        </div>
+        <div class="policy">
+            <div class="policy-icon">🔞</div>
+            <h4>Minimum Age</h4>
+            <p>Lead guest must be 21 years of age or older</p>
+        </div>
+        <div class="policy">
+            <div class="policy-icon">🚭</div>
+            <h4>No Smoking</h4>
+            <p>Non-smoking property throughout</p>
+        </div>
+        <div class="policy">
+            <div class="policy-icon">🐾</div>
+            <h4>No Pets</h4>
+            <p>Animals are not permitted on the estate</p>
+        </div>
+        <div class="policy">
+            <div class="policy-icon">🌙</div>
+            <h4>Quiet Hours</h4>
+            <p>23:00 — 09:00 · Out of respect for neighbours</p>
+        </div>
+    </div>
+</section>
+
+<!-- CTA -->
+<section class="cta-section" id="reserve">
+    <div class="cta-bg"></div>
+    <div class="cta-overlay"></div>
+    <div class="cta-content">
+        <div class="cta-eyebrow">Reserve Your Stay</div>
+        <h2 class="cta-h2">The Estate<br>Awaits You</h2>
+        <p class="cta-p">Exclusively yours. Enquire for availability and rates. Secure your private retreat on the Atlantic coast of Tenerife.</p>
+        <a href="https://www.booking.com/hotel/es/atlantico-one-oceanfront-luxury-villa-amp-heated-pool.pl.html" target="_blank" class="btn-gold">
+            Check Availability
+        </a>
+    </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+    <div class="footer-logo">Atlantico One</div>
+    <div class="footer-sub">Private Oceanfront Estate · Las Aguas, Tenerife</div>
+    <div class="footer-divider"></div>
+    <div class="footer-info">
+        C. el Puntón, 4 · 38429 Las Aguas · Tenerife, Spain<br>
+        Licence: VV-38-4-0102750<br><br>
+        © 2026 Atlantico One. All rights reserved.
+    </div>
+</footer>
+
+<!-- LIGHTBOX -->
+<div class="lightbox" id="lightbox">
+    <button class="lb-close" onclick="closeLightbox()">Close ✕</button>
+    <button class="lb-prev" onclick="changeLightbox(-1)">‹</button>
+    <img class="lb-img" id="lbImg" src="" alt="">
+    <button class="lb-next" onclick="changeLightbox(1)">›</button>
+    <div class="lb-counter" id="lbCounter"></div>
+</div>
+
+<script>
+const imgs = [
+    "img/811085429.jpg",
+    "img/811085483.jpg",
+    "img/812833212.jpg",
+    "img/812833106.jpg",
+    "img/811085461.jpg",
+    "img/812832182.jpg",
+    "img/811085529.jpg",
+    "img/811085534.jpg",
+    "img/811085333.jpg",
+    "img/816796352.jpg",
+    "img/816796281.jpg",
+    "img/811085401.jpg",
+    "img/812832962.jpg",
+    "img/812833154.jpg",
+    "img/812833257.jpg",
+    "img/812832810.jpg",
+    "img/812833172.jpg",
+    "img/812832771.jpg",
+    "img/812832722.jpg",
+    "img/812832623.jpg",
+    "img/812832546.jpg",
+    "img/812832485.jpg",
+    "img/812832413.jpg",
+    "img/811085415.jpg",
+    "img/811085419.jpg",
+    "img/811085426.jpg",
+    "img/811085440.jpg",
+    "img/811085445.jpg",
+    "img/811085453.jpg",
+    "img/811085493.jpg",
+    "img/811085511.jpg",
+    "img/811085521.jpg",
+    "img/811085541.jpg",
+    "img/811085546.jpg",
+    "img/811085553.jpg",
+    "img/811085558.jpg",
+    "img/811085563.jpg",
+    "img/811085567.jpg",
+    "img/811085575.jpg",
+    "img/811085580.jpg",
+    "img/811085590.jpg",
+    "img/811085594.jpg",
+    "img/811085600.jpg",
+    "img/811085608.jpg",
+];
+
+let cur = 0;
+
+function openLightbox(i) {
+    cur = i;
+    document.getElementById('lbImg').src = imgs[i];
+    document.getElementById('lbCounter').textContent = (i + 1) + ' / ' + imgs.length;
+    document.getElementById('lightbox').classList.add('active');
+    document.body.style.overflow = 'hidden';
+}
+function closeLightbox() {
+    document.getElementById('lightbox').classList.remove('active');
+    document.body.style.overflow = '';
+}
+function changeLightbox(dir) {
+    cur = (cur + dir + imgs.length) % imgs.length;
+    document.getElementById('lbImg').src = imgs[cur];
+    document.getElementById('lbCounter').textContent = (cur + 1) + ' / ' + imgs.length;
+}
+document.getElementById('lightbox').addEventListener('click', e => {
+    if (e.target === e.currentTarget) closeLightbox();
+});
+document.addEventListener('keydown', e => {
+    if (e.key === 'Escape') closeLightbox();
+    if (e.key === 'ArrowLeft') changeLightbox(-1);
+    if (e.key === 'ArrowRight') changeLightbox(1);
+});
+
+// Nav on scroll
+const nav = document.getElementById('nav');
+window.addEventListener('scroll', () => {
+    nav.classList.toggle('scrolled', window.scrollY > 80);
+});
+
+// Hero image subtle zoom on load
+const heroImg = document.getElementById('heroImg');
+heroImg.addEventListener('load', () => heroImg.classList.add('loaded'));
+if (heroImg.complete) heroImg.classList.add('loaded');
+</script>
+</body>
+</html>
